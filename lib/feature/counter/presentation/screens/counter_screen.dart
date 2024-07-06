@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mvvm_example/feature/counter/data/data_source/local.dart';
+import 'package:mvvm_example/feature/counter/data/repositories/local_repo.dart';
 import 'package:mvvm_example/feature/counter/presentation/states/counter_state.dart';
 import '../view_models/counter_view_model.dart';
 import '../widgets/app_button.dart';
@@ -21,9 +23,24 @@ class _RiverpodStatefulExampleState
           count: 0,
           counterPlus: 0,
         ),
+        localDataRepository: LocalDataRepository(
+          localDataSource: LocalDataSource(),
+        ),
       );
     },
   );
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration.zero).then(
+      (_) {
+        /// call this to get the counter history from sharedPreference
+        ref.read(counterProvider.notifier).getCounterHistory();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

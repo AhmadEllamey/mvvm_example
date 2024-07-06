@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:mvvm_example/feature/counter/presentation/screens/data_base_example.dart';
 import 'feature/counter/presentation/screens/counter_screen.dart';
+import 'feature/counter/presentation/screens/post_screen.dart';
 
 void main() {
   runApp(
@@ -23,10 +24,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const RiverpodStatefulExample(),
+      // home: const PostScreen(),
+      // home: const RiverpodStatefulExample(),
+      home: const DataBaseExample(),
     );
   }
 }
-
-
-
